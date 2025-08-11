@@ -14,7 +14,7 @@ class HomeScreen extends ConsumerWidget {
     final matchesState = ref.watch(
       query<BjjMatch>(
         // Use local storage for deduplicated results
-        source: LocalSource(stream: true),
+        source: LocalSource(),
       ),
     );
 
@@ -44,7 +44,7 @@ class HomeScreen extends ConsumerWidget {
                 ],
               ),
             ),
-          StorageData(:final models) {
+          StorageData(:final models) => () {
             // Deduplicate matches by matchId and take the latest version
             final matches = _deduplicateMatches(
               models.cast<BjjMatch>(),
@@ -52,40 +52,40 @@ class HomeScreen extends ConsumerWidget {
 
             return matches.isEmpty
                 ? Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        Icons.sports_mma,
-                        size: 64,
-                        color: Colors.grey[400],
-                      ),
-                      const SizedBox(height: 16),
-                      Text(
-                        'No matches yet',
-                        style: Theme.of(context).textTheme.headlineSmall,
-                      ),
-                      const SizedBox(height: 8),
-                      Text(
-                        'Create your first BJJ match to get started',
-                        style: Theme.of(context).textTheme.bodyMedium,
-                        textAlign: TextAlign.center,
-                      ),
-                      const SizedBox(height: 24),
-                      ElevatedButton.icon(
-                        onPressed: () => context.push('/create'),
-                        icon: const Icon(Icons.add),
-                        label: const Text('Create Match'),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor:
-                              Theme.of(context).colorScheme.primary,
-                          foregroundColor:
-                              Theme.of(context).colorScheme.onPrimary,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.sports_mma,
+                          size: 64,
+                          color: Colors.grey[400],
                         ),
-                      ),
-                    ],
-                  ),
-                )
+                        const SizedBox(height: 16),
+                        Text(
+                          'No matches yet',
+                          style: Theme.of(context).textTheme.headlineSmall,
+                        ),
+                        const SizedBox(height: 8),
+                        Text(
+                          'Create your first BJJ match to get started',
+                          style: Theme.of(context).textTheme.bodyMedium,
+                          textAlign: TextAlign.center,
+                        ),
+                        const SizedBox(height: 24),
+                        ElevatedButton.icon(
+                          onPressed: () => context.push('/create'),
+                          icon: const Icon(Icons.add),
+                          label: const Text('Create Match'),
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor:
+                                Theme.of(context).colorScheme.primary,
+                            foregroundColor:
+                                Theme.of(context).colorScheme.onPrimary,
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
                 : Column(
                     children: [
                       // Status filters
@@ -117,7 +117,7 @@ class HomeScreen extends ConsumerWidget {
                       ),
                     ],
                   );
-          },
+          }(),
         },
       ),
       floatingActionButton: FloatingActionButton(
@@ -132,17 +132,22 @@ class HomeScreen extends ConsumerWidget {
 
 // Deduplicate matches by their address (matchId) and keep latest version
 List<BjjMatch> _deduplicateMatches(List<BjjMatch> matches) {
+  final defaultDate = DateTime.fromMillisecondsSinceEpoch(0);
   final Map<String, BjjMatch> latest = {};
   for (final match in matches) {
     final existing = latest[match.matchId];
+    final matchDate = match.event.createdAt;
+    final existingDate = existing?.event.createdAt;
     if (existing == null ||
-        match.event.createdAt > existing.event.createdAt) {
+        (matchDate != null &&
+            (existingDate == null || matchDate.isAfter(existingDate)))) {
       latest[match.matchId] = match;
     }
   }
   final result = latest.values.toList();
   result.sort(
-    (a, b) => b.event.createdAt.compareTo(a.event.createdAt),
+    (a, b) => (b.event.createdAt ?? defaultDate)
+        .compareTo(a.event.createdAt ?? defaultDate),
   );
   return result;
 }
