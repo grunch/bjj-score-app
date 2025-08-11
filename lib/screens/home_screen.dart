@@ -132,17 +132,20 @@ class HomeScreen extends ConsumerWidget {
 
 // Deduplicate matches by their address (matchId) and keep latest version
 List<BjjMatch> _deduplicateMatches(List<BjjMatch> matches) {
+  final defaultDate = DateTime.fromMillisecondsSinceEpoch(0);
   final Map<String, BjjMatch> latest = {};
   for (final match in matches) {
     final existing = latest[match.matchId];
     if (existing == null ||
-        match.event.createdAt.isAfter(existing.event.createdAt)) {
+        (match.event.createdAt ?? defaultDate)
+            .isAfter(existing.event.createdAt ?? defaultDate)) {
       latest[match.matchId] = match;
     }
   }
   final result = latest.values.toList();
   result.sort(
-    (a, b) => b.event.createdAt.compareTo(a.event.createdAt),
+    (a, b) => (b.event.createdAt ?? defaultDate)
+        .compareTo(a.event.createdAt ?? defaultDate),
   );
   return result;
 }

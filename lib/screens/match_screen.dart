@@ -76,7 +76,11 @@ class MatchScreen extends HookConsumerWidget {
 
 // Select the newest version of a match from a list
 BjjMatch _latestMatch(List<BjjMatch> matches) {
-  matches.sort((a, b) => b.event.createdAt.compareTo(a.event.createdAt));
+  final defaultDate = DateTime.fromMillisecondsSinceEpoch(0);
+  matches.sort(
+    (a, b) => (b.event.createdAt ?? defaultDate)
+        .compareTo(a.event.createdAt ?? defaultDate),
+  );
   return matches.first;
 }
 
