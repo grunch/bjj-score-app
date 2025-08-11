@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="API docs for the Article class from the models library, for the Dart programming language.">
+  <title>Article class - models library - Dart API</title>
+
+
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../static-assets/github.css?v1">
+  <link rel="stylesheet" href="../static-assets/styles.css?v1">
+  <link rel="icon" href="../static-assets/favicon.png?v1">
+  
+</head>
+
+<body data-base-href="../" data-using-base-href="false" class="light-theme">
+<div id="overlay-under-drawer"></div>
+<header id="title">
+  <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="../index.html">models</a></li>
+    <li><a href="../models/">models.dart</a></li>
+    <li class="self-crumb">Article class</li>
+  </ol>
+  <div class="self-name">Article</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+  <button class="toggle" id="theme-button" title="Toggle between light and dark mode" aria-label="Light and dark mode toggle">
+    <span id="dark-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      dark_mode
+    </span>
+    <span id="light-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      light_mode
+    </span>
+  </button>
+</header>
+<main>
+<div
+    id="dartdoc-main-content"
+    class="main-content"
+    data-above-sidebar="models&#47;models-library-sidebar.html"
+    data-below-sidebar="models&#47;Article-class-sidebar.html">
+    <div>
+<h1><span class="kind-class">Article</span> class 
+ 
+</h1></div>
+
+    
+<section class="desc markdown">
+  <p>A long-form article event (kind 30023) for publishing structured content.</p>
+<p>Articles are parameterizable replaceable events that support rich content
+with titles, summaries, images, and markdown formatting. They're designed
+for blog posts, documentation, and other long-form content.</p>
+</section>
+
+
+    <section>
+      <dl class="dl-horizontal">
+        
+  <dt>Inheritance</dt>
+  <dd>
+    <ul class="gt-separated dark clazz-relationships">
+      <li><a href="https://api.dart.dev/stable/3.8.1/dart-core/Object-class.html">Object</a></li>
+        <li><a href="../models/Model-class.html">Model</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../models/Article-class.html">Article</a></span>&gt;</span></li>
+        <li><a href="../models/ReplaceableModel-class.html">ReplaceableModel</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../models/Article-class.html">Article</a></span>&gt;</span></li>
+        <li><a href="../models/ParameterizableReplaceableModel-class.html">ParameterizableReplaceableModel</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../models/Article-class.html">Article</a></span>&gt;</span></li>
+      <li>Article</li>
+    </ul>
+  </dd>
+
+        
+        
+
+
+        
+        
+
+
+      </dl>
+    </section>
+
+    
+  <section class="summary offset-anchor" id="constructors">
+    <h2>Constructors</h2>
+    <dl class="constructor-summary-list">
+        <dt id="Article.fromMap" class="callable">
+          <span class="name"><a href="../models/Article/Article.fromMap.html">Article.fromMap</a></span><span class="signature">(<span class="parameter" id="fromMap-param-map"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.8.1/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.8.1/dart-core/String-class.html">String</a></span>, <span class="type-parameter">dynamic</span>&gt;</span></span> <span class="parameter-name">map</span>, </span><span class="parameter" id="fromMap-param-ref"><span class="type-annotation"><a href="https://pub.dev/documentation/riverpod/2.6.1/riverpod/Ref-class.html">Ref</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.8.1/dart-core/Object-class.html">Object</a>?</span>&gt;</span></span> <span class="parameter-name">ref</span></span>)</span>
+        </dt>
+        <dd>
+          
+        </dd>
+    </dl>
+  </section>
+    
+  <section
+      class="summary offset-anchor"
+      id="instance-properties">
+    <h2>Properties</h2>
+    <dl class="properties">
+        <dt id="author" class="property inherited">
+  <span class="name"><a href="../models/Model/author.html">author</a></span>
+  <span class="signature">&#8596; <a href="../models/BelongsTo-class.html">BelongsTo</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../models/Profile-class.html">Profile</a></span>&gt;</span></span>
+  
+
+</dt>
+<dd class="inherited">
+  The author (profile) of this model.
+  <div class="features"><span class="feature">late</span><span class="feature">final</span><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="content" class="property">
+  <span class="name"><a href="../models/Article/content.html">content</a></span>
+  <span class="signature">&#8594; <a href="https://api.dart.dev/stable/3.8.1/dart-core/String-class.html">String</a></span>
+  
+
+</dt>
+<dd>
+  The full markdown content of the article
+  <div class="features"><span class="feature">no setter</span></div>
+
+</dd>
+
+        <dt id="createdAt" class="property inherited">
+  <span class="name"><a href="../models/Model/createdAt.html">createdAt</a></span>
+  <span class="signature">&#8594; <a href="https://api.dart.dev/stable/3.8.1/dart-core/DateTime-class.html">DateTime</a></span>
+  
+
+</dt>
+<dd class="inherited">
+  When this model was created.
+  <div class="features"><span class="feature">no setter</span><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="event" class="property inherited">
+  <span class="name"><a href="../models/ParameterizableReplaceableModel/event.html">event</a></span>
+  <span class="signature">&#8594; <a href="../models/ImmutableParameterizableReplaceableEvent-class.html">ImmutableParameterizableReplaceableEvent</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../models/Article-class.html">Article</a></span>&gt;</span></span>
+  
+
+</dt>
+<dd class="inherited">
+  Internal representation of the Nostr event
+to be accessed mostly through this Model class
+  <div class="features"><span class="feature">no setter</span><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="genericReposts" class="property inherited">
+  <span class="name"><a href="../models/Model/genericReposts.html">genericReposts</a></span>
+  <span class="signature">&#8596; <a href="../models/HasMany-class.html">HasMany</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../models/GenericRepost-class.html">GenericRepost</a></span>&gt;</span></span>
+  
+
+</dt>
+<dd class="inherited">
+  All generic reposts of this model.
+  <div class="features"><span class="feature">late</span><span class="feature">final</span><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="hashCode" class="property inherited">
+  <span class="name"><a href="https://pub.dev/documentation/equatable/2.0.7/equatable/EquatableMixin/hashCode.html">hashCode</a></span>
+  <span class="signature">&#8594; <a href="https://api.dart.dev/stable/3.8.1/dart-core/int-class.html">int</a></span>
+  
+
+</dt>
+<dd class="inherited">
+  The hash code for this object.
+  <div class="features"><span class="feature">no setter</span><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="highlights" class="property">
+  <span class="name"><a href="../models/Article/highlights.html">highlights</a></span>
+  <span class="signature">&#8596; <a href="../models/HasMany-class.html">HasMany</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../models/Highlight-class.html">Highlight</a></span>&gt;</span></span>
+  
+
+</dt>
+<dd>
+  
+  <div class="features"><span class="feature">late</span><span class="feature">final</span></div>
+
+</dd>
+
+        <dt id="id" class="property inherited">
+  <span class="name"><a href="../models/Model/id.html">id</a></span>
+  <span class="signature">&#8594; <a href="https://api.dart.dev/stable/3.8.1/dart-core/String-class.html">String</a></span>
+  
+
+</dt>
+<dd class="inherited">
+  The unique addressable identifier for this model.
+  <div class="features"><span class="feature">no setter</span><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="identifier" class="property inherited">
+  <span class="name"><a href="../models/ParameterizableReplaceableModel/identifier.html">identifier</a></span>
+  <span class="signature">&#8594; <a href="https://api.dart.dev/stable/3.8.1/dart-core/String-class.html">String</a></span>
+  
+
+</dt>
+<dd class="inherited">
+  
+  <div class="features"><span class="feature">no setter</span><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="imageUrl" class="property">
+  <span class="name"><a href="../models/Article/imageUrl.html">imageUrl</a></span>
+  <span class="signature">&#8594; <a href="https://api.dart.dev/stable/3.8.1/dart-core/String-class.html">String</a>?</span>
+  
+
+</dt>
+<dd>
+  URL to the header image for the article
+  <div class="features"><span class="feature">no setter</span></div>
+
+</dd>
+
+        <dt id="props" class="property inherited">
+  <span class="name"><a href="../models/Model/props.html">props</a></span>
+  <span class="signature">&#8594; <a href="https://api.dart.dev/stable/3.8.1/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.8.1/dart-core/Object-class.html">Object</a>?</span>&gt;</span></span>
+  
+
+</dt>
+<dd class="inherited">
+  Models are equal when they event IDs are (not their addressable IDs)
+  <div class="features"><span class="feature">no setter</span><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="pubkey" class="property inherited">
+  <span class="name"><a href="../models/Model/pubkey.html">pubkey</a></span>
+  <span class="signature">&#8594; <a href="https://api.dart.dev/stable/3.8.1/dart-core/String-class.html">String</a></span>
+  
+
+</dt>
+<dd class="inherited">
+  Public key of the author of this model.
+  <div class="features"><span class="feature">no setter</span><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="publishedAt" class="property">
+  <span class="name"><a href="../models/Article/publishedAt.html">publishedAt</a></span>
+  <span class="signature">&#8594; <a href="https://api.dart.dev/stable/3.8.1/dart-core/DateTime-class.html">DateTime</a>?</span>
+  
+
+</dt>
+<dd>
+  When the article was published (may differ from created_at)
+  <div class="features"><span class="feature">no setter</span></div>
+
+</dd>
+
+        <dt id="reactions" class="property inherited">
+  <span class="name"><a href="../models/Model/reactions.html">reactions</a></span>
+  <span class="signature">&#8596; <a href="../models/HasMany-class.html">HasMany</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../models/Reaction-class.html">Reaction</a></span>&gt;</span></span>
+  
+
+</dt>
+<dd class="inherited">
+  All reactions to this model.
+  <div class="features"><span class="feature">late</span><span class="feature">final</span><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="ref" class="property inherited">
+  <span class="name"><a href="../models/Model/ref.html">ref</a></span>
+  <span class="signature">&#8594; <a href="https://pub.dev/documentation/riverpod/2.6.1/riverpod/Ref-class.html">Ref</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.8.1/dart-core/Object-class.html">Object</a>?</span>&gt;</span></span>
+  
+
+</dt>
+<dd class="inherited">
+  
+  <div class="features"><span class="feature">final</span><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="reposts" class="property">
+  <span class="name"><a href="../models/Article/reposts.html">reposts</a></span>
+  <span class="signature">&#8596; <a href="../models/HasMany-class.html">HasMany</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../models/GenericRepost-class.html">GenericRepost</a></span>&gt;</span></span>
+  
+
+</dt>
+<dd>
+  
+  <div class="features"><span class="feature">late</span><span class="feature">final</span></div>
+
+</dd>
+
+        <dt id="runtimeType" class="property inherited">
+  <span class="name"><a href="https://api.dart.dev/stable/3.8.1/dart-core/Object/runtimeType.html">runtimeType</a></span>
+  <span class="signature">&#8594; <a href="https://api.dart.dev/stable/3.8.1/dart-core/Type-class.html">Type</a></span>
+  
+
+</dt>
+<dd class="inherited">
+  A representation of the runtime type of the object.
+  <div class="features"><span class="feature">no setter</span><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="slug" class="property">
+  <span class="name"><a href="../models/Article/slug.html">slug</a></span>
+  <span class="signature">&#8594; <a href="https://api.dart.dev/stable/3.8.1/dart-core/String-class.html">String</a></span>
+  
+
+</dt>
+<dd>
+  URL-friendly identifier for the article
+  <div class="features"><span class="feature">no setter</span></div>
+
+</dd>
+
+        <dt id="storage" class="property inherited">
+  <span class="name"><a href="../models/Model/storage.html">storage</a></span>
+  <span class="signature">&#8594; <a href="../models/StorageNotifier-class.html">StorageNotifier</a></span>
+  
+
+</dt>
+<dd class="inherited">
+  
+  <div class="features"><span class="feature">final</span><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="stringify" class="property inherited">
+  <span class="name"><a href="https://pub.dev/documentation/equatable/2.0.7/equatable/EquatableMixin/stringify.html">stringify</a></span>
+  <span class="signature">&#8594; <a href="https://api.dart.dev/stable/3.8.1/dart-core/bool-class.html">bool</a>?</span>
+  
+
+</dt>
+<dd class="inherited">
+  If set to <code>true</code>, the <a href="../models/Model/toString.html">toString</a> method will be overridden to output
+this instance's <a href="../models/Model/props.html">props</a>.
+  <div class="features"><span class="feature">no setter</span><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="summary" class="property">
+  <span class="name"><a href="../models/Article/summary.html">summary</a></span>
+  <span class="signature">&#8594; <a href="https://api.dart.dev/stable/3.8.1/dart-core/String-class.html">String</a>?</span>
+  
+
+</dt>
+<dd>
+  Brief description or summary of the article
+  <div class="features"><span class="feature">no setter</span></div>
+
+</dd>
+
+        <dt id="tags" class="property inherited">
+  <span class="name"><a href="../models/Model/tags.html">tags</a></span>
+  <span class="signature">&#8594; <a href="https://api.dart.dev/stable/3.8.1/dart-core/Set-class.html">Set</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.8.1/dart-core/String-class.html">String</a></span>&gt;</span></span>
+  
+
+</dt>
+<dd class="inherited">
+  Topic tags (hashtags) for this model.
+  <div class="features"><span class="feature">no setter</span><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="targetedPublications" class="property inherited">
+  <span class="name"><a href="../models/Model/targetedPublications.html">targetedPublications</a></span>
+  <span class="signature">&#8596; <a href="../models/HasMany-class.html">HasMany</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../models/TargetedPublication-class.html">TargetedPublication</a></span>&gt;</span></span>
+  
+
+</dt>
+<dd class="inherited">
+  All targeted publications of this model.
+  <div class="features"><span class="feature">late</span><span class="feature">final</span><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="title" class="property">
+  <span class="name"><a href="../models/Article/title.html">title</a></span>
+  <span class="signature">&#8594; <a href="https://api.dart.dev/stable/3.8.1/dart-core/String-class.html">String</a>?</span>
+  
+
+</dt>
+<dd>
+  The article title
+  <div class="features"><span class="feature">no setter</span></div>
+
+</dd>
+
+        <dt id="zaps" class="property inherited">
+  <span class="name"><a href="../models/Model/zaps.html">zaps</a></span>
+  <span class="signature">&#8596; <a href="../models/HasMany-class.html">HasMany</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../models/Zap-class.html">Zap</a></span>&gt;</span></span>
+  
+
+</dt>
+<dd class="inherited">
+  All zaps (lightning payments) to this model.
+  <div class="features"><span class="feature">late</span><span class="feature">final</span><span class="feature">inherited</span></div>
+
+</dd>
+
+    </dl>
+  </section>
+
+    
+  <section
+      class="summary offset-anchor inherited"
+      id="instance-methods">
+    <h2>Methods</h2>
+    <dl class="callables">
+        <dt id="noSuchMethod" class="callable inherited">
+  <span class="name"><a href="https://api.dart.dev/stable/3.8.1/dart-core/Object/noSuchMethod.html">noSuchMethod</a></span><span class="signature">(<wbr><span class="parameter" id="noSuchMethod-param-invocation"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.8.1/dart-core/Invocation-class.html">Invocation</a></span> <span class="parameter-name">invocation</span></span>)
+    <span class="returntype parameter">&#8594; dynamic</span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  Invoked when a nonexistent method or property is accessed.
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="processMetadata" class="callable inherited">
+  <span class="name"><a href="../models/Model/processMetadata.html">processMetadata</a></span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.8.1/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.8.1/dart-core/String-class.html">String</a></span>, <span class="type-parameter">dynamic</span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  Parse once in-event data that requires expensive decoding,
+for instance zap amounts.
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="publish" class="callable inherited">
+  <span class="name"><a href="../models/Model/publish.html">publish</a></span><span class="signature">(<wbr>{<span class="parameter" id="publish-param-source"><span class="type-annotation"><a href="../models/RemoteSource-class.html">RemoteSource</a></span> <span class="parameter-name">source</span> = <span class="default-value">const RemoteSource()</span></span>})
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.8.1/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter">void</span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  Publish this model to relays. This does NOT save to local storage.
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="save" class="callable inherited">
+  <span class="name"><a href="../models/Model/save.html">save</a></span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.8.1/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter">void</span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  Save this model to local storage.
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="toMap" class="callable inherited">
+  <span class="name"><a href="../models/Model/toMap.html">toMap</a></span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.8.1/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.8.1/dart-core/String-class.html">String</a></span>, <span class="type-parameter">dynamic</span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="toPartial" class="callable inherited">
+  <span class="name"><a href="../models/Model/toPartial.html">toPartial</a></span><span class="signature">&lt;<wbr><span class="type-parameter">P extends <a href="../models/PartialModel-class.html">PartialModel</a><span class="signature">&lt;<wbr><span class="type-parameter">E</span>&gt;</span></span>&gt;</span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; P</span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  Convert this model to its partial representation.
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="toString" class="callable inherited">
+  <span class="name"><a href="../models/Model/toString.html">toString</a></span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.8.1/dart-core/String-class.html">String</a></span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  A string representation of this object.
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="transformMap" class="callable inherited">
+  <span class="name"><a href="../models/Model/transformMap.html">transformMap</a></span><span class="signature">(<wbr><span class="parameter" id="transformMap-param-map"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.8.1/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.8.1/dart-core/String-class.html">String</a></span>, <span class="type-parameter">dynamic</span>&gt;</span></span> <span class="parameter-name">map</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.8.1/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.8.1/dart-core/String-class.html">String</a></span>, <span class="type-parameter">dynamic</span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  Map transformations before the event is fed into the constructor,
+for instance to strip signatures.
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+    </dl>
+  </section>
+    
+  <section
+      class="summary offset-anchor inherited"
+      id="operators">
+    <h2>Operators</h2>
+    <dl class="callables">
+        <dt id="operator ==" class="callable inherited">
+  <span class="name"><a href="https://pub.dev/documentation/equatable/2.0.7/equatable/EquatableMixin/operator_equals.html">operator ==</a></span><span class="signature">(<wbr><span class="parameter" id="==-param-other"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.8.1/dart-core/Object-class.html">Object</a></span> <span class="parameter-name">other</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.8.1/dart-core/bool-class.html">bool</a></span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  The equality operator.
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+    </dl>
+  </section>
+    
+    
+    
+
+  </div> <!-- /.main-content -->
+  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+    <!-- The search input and breadcrumbs below are only responsively visible at low resolutions. -->
+<header id="header-search-sidebar" class="hidden-l">
+  <form class="search-sidebar" role="search">
+    <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+<ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+    <li><a href="../index.html">models</a></li>
+    <li><a href="../models/">models</a></li>
+    <li class="self-crumb">Article class</li>
+</ol>
+
+    <h5>models library</h5>
+    <div id="dartdoc-sidebar-left-content"></div>
+  </div>
+  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+  </div><!--/.sidebar-offcanvas-->
+</main>
+<footer>
+  <span class="no-break">
+    models
+      0.3.3
+  </span>
+  
+</footer>
+
+
+<script src="../static-assets/highlight.pack.js?v1"></script>
+<script src="../static-assets/docs.dart.js"></script>
+
+</body>
+</html>
+

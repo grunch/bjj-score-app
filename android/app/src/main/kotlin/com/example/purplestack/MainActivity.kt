@@ -1,4 +1,4 @@
-package com.example.purplestack
+package live.bjjscore.app
 
 import io.flutter.embedding.android.FlutterActivity
 

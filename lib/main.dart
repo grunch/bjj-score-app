@@ -6,8 +6,34 @@ import 'package:models/models.dart';
 import 'package:path/path.dart' as path;
 import 'package:path_provider/path_provider.dart';
 import 'package:purplebase/purplebase.dart';
-import 'package:purplestack/router.dart';
-import 'package:purplestack/theme.dart';
+import 'package:bjj_score/router.dart';
+import 'package:bjj_score/theme.dart';
+import 'package:bjj_score/models/bjj_match.dart';
+import 'package:bjj_score/services/key_service.dart';
+
+// Create and authenticate a persistent signer for the app
+final currentSignerProvider = FutureProvider<Signer?>((ref) async {
+  try {
+    // Get or create a persistent private key
+    final privateKey = await KeyService.getOrCreatePrivateKey();
+    final signer = Bip340PrivateKeySigner(privateKey, ref);
+    
+    // Check if this is the first launch for logging
+    final isFirstLaunch = await KeyService.isFirstLaunch();
+    if (isFirstLaunch) {
+      debugPrint('BJJ Score: First launch detected, new identity created');
+    } else {
+      debugPrint('BJJ Score: Using existing identity');
+    }
+    
+    // Sign in the signer to make it active and accessible
+    await signer.signIn(setAsActive: true);
+    return signer;
+  } catch (e) {
+    debugPrint('Signer initialization failed: $e');
+    return null;
+  }
+});
 
 void main() {
   runZonedGuarded(() {
@@ -18,7 +44,7 @@ void main() {
             (ref) => PurplebaseStorageNotifier(ref),
           ),
         ],
-        child: const PurplestackApp(),
+        child: const BjjScoreApp(),
       ),
     );
   }, errorHandler);
@@ -30,12 +56,12 @@ void main() {
   };
 }
 
-class PurplestackApp extends ConsumerWidget {
-  const PurplestackApp({super.key});
+class BjjScoreApp extends ConsumerWidget {
+  const BjjScoreApp({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final title = 'Purplestack';
+    final title = 'BjjScore';
     final theme = ref.watch(themeProvider);
 
     return switch (ref.watch(appInitializationProvider)) {
@@ -82,8 +108,8 @@ class PurplestackApp extends ConsumerWidget {
   }
 }
 
-class PurplestackHome extends StatelessWidget {
-  const PurplestackHome({super.key});
+class BjjScoreHome extends StatelessWidget {
+  const BjjScoreHome({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -100,7 +126,7 @@ class PurplestackHome extends StatelessWidget {
               ),
               const SizedBox(height: 16),
               Text(
-                'Purplestack',
+                'BjjScore',
                 style: Theme.of(context).textTheme.headlineMedium,
               ),
               const SizedBox(height: 8),
@@ -128,16 +154,22 @@ final appInitializationProvider = FutureProvider<void>((ref) async {
   await ref.read(
     initializationProvider(
       StorageConfiguration(
-        databasePath: path.join(dir.path, 'purplestack.db'),
+        databasePath: path.join(dir.path, 'bjj_score.db'),
         relayGroups: {
           'default': {
+            'wss://relay.mostro.network',
             'wss://relay.damus.io',
-            'wss://relay.primal.net',
-            'wss://nos.lol',
           },
         },
         defaultRelayGroup: 'default',
       ),
     ).future,
+  );
+  
+  // Register the custom BJJ match model
+  Model.register<BjjMatch>(
+    kind: 31914,
+    constructor: BjjMatch.fromMap,
+    partialConstructor: PartialBjjMatch.fromMap,
   );
 });
