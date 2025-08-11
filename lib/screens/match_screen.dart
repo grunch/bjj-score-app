@@ -18,7 +18,8 @@ class MatchScreen extends HookConsumerWidget {
     final matchState = ref.watch(
       query<BjjMatch>(
         tags: {'#d': {matchId}},
-        source: LocalAndRemoteSource(stream: true),
+        // Use local storage to leverage built-in deduplication
+        source: LocalSource(stream: true),
       ),
     );
 
@@ -45,28 +46,38 @@ class MatchScreen extends HookConsumerWidget {
             ),
           ),
         ),
-      StorageData(:final models) => models.isEmpty
-          ? Scaffold(
-              appBar: AppBar(title: const Text('Match Not Found')),
-              body: Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Icon(Icons.search_off, size: 64),
-                    const SizedBox(height: 16),
-                    Text('Match $matchId not found'),
-                    const SizedBox(height: 16),
-                    ElevatedButton(
-                      onPressed: () => context.go('/'),
-                      child: const Text('Go Back'),
-                    ),
-                  ],
-                ),
+      StorageData(:final models) {
+        if (models.isEmpty) {
+          return Scaffold(
+            appBar: AppBar(title: const Text('Match Not Found')),
+            body: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Icon(Icons.search_off, size: 64),
+                  const SizedBox(height: 16),
+                  Text('Match $matchId not found'),
+                  const SizedBox(height: 16),
+                  ElevatedButton(
+                    onPressed: () => context.go('/'),
+                    child: const Text('Go Back'),
+                  ),
+                ],
               ),
-            )
-          : MatchControlWidget(match: models.first),
+            ),
+          );
+        }
+        final match = _latestMatch(models.cast<BjjMatch>());
+        return MatchControlWidget(match: match);
+      },
     };
   }
+}
+
+// Select the newest version of a match from a list
+BjjMatch _latestMatch(List<BjjMatch> matches) {
+  matches.sort((a, b) => b.event.createdAt.compareTo(a.event.createdAt));
+  return matches.first;
 }
 
 class MatchControlWidget extends HookConsumerWidget {

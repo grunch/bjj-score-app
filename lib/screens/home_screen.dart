@@ -13,7 +13,8 @@ class HomeScreen extends ConsumerWidget {
     // Get current user's matches - query all matches for now
     final matchesState = ref.watch(
       query<BjjMatch>(
-        source: LocalAndRemoteSource(stream: true),
+        // Use local storage for deduplicated results
+        source: LocalSource(stream: true),
       ),
     );
 
@@ -43,8 +44,14 @@ class HomeScreen extends ConsumerWidget {
                 ],
               ),
             ),
-          StorageData(:final models) => models.isEmpty
-              ? Center(
+          StorageData(:final models) {
+            // Deduplicate matches by matchId and take the latest version
+            final matches = _deduplicateMatches(
+              models.cast<BjjMatch>(),
+            );
+
+            return matches.isEmpty
+                ? Center(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -70,43 +77,47 @@ class HomeScreen extends ConsumerWidget {
                         icon: const Icon(Icons.add),
                         label: const Text('Create Match'),
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Theme.of(context).colorScheme.primary,
-                          foregroundColor: Theme.of(context).colorScheme.onPrimary,
+                          backgroundColor:
+                              Theme.of(context).colorScheme.primary,
+                          foregroundColor:
+                              Theme.of(context).colorScheme.onPrimary,
                         ),
                       ),
                     ],
                   ),
                 )
-              : Column(
-                  children: [
-                    // Status filters
-                    Container(
-                      padding: const EdgeInsets.all(16.0),
-                      child: Row(
-                        children: [
-                          Text(
-                            'Your Matches',
-                            style: Theme.of(context).textTheme.headlineSmall,
-                          ),
-                          const Spacer(),
-                          Text('${models.length} total'),
-                        ],
+                : Column(
+                    children: [
+                      // Status filters
+                      Container(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Row(
+                          children: [
+                            Text(
+                              'Your Matches',
+                              style: Theme.of(context).textTheme.headlineSmall,
+                            ),
+                            const Spacer(),
+                            Text('${matches.length} total'),
+                          ],
+                        ),
                       ),
-                    ),
-                    
-                    // Match list
-                    Expanded(
-                      child: ListView.builder(
-                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                        itemCount: models.length,
-                        itemBuilder: (context, index) {
-                          final match = models[index] as BjjMatch;
-                          return MatchCard(match: match);
-                        },
+
+                      // Match list
+                      Expanded(
+                        child: ListView.builder(
+                          padding:
+                              const EdgeInsets.symmetric(horizontal: 16.0),
+                          itemCount: matches.length,
+                          itemBuilder: (context, index) {
+                            final match = matches[index];
+                            return MatchCard(match: match);
+                          },
+                        ),
                       ),
-                    ),
-                  ],
-                ),
+                    ],
+                  );
+          },
         },
       ),
       floatingActionButton: FloatingActionButton(
@@ -117,6 +128,23 @@ class HomeScreen extends ConsumerWidget {
       ),
     );
   }
+}
+
+// Deduplicate matches by their address (matchId) and keep latest version
+List<BjjMatch> _deduplicateMatches(List<BjjMatch> matches) {
+  final Map<String, BjjMatch> latest = {};
+  for (final match in matches) {
+    final existing = latest[match.matchId];
+    if (existing == null ||
+        match.event.createdAt > existing.event.createdAt) {
+      latest[match.matchId] = match;
+    }
+  }
+  final result = latest.values.toList();
+  result.sort(
+    (a, b) => b.event.createdAt.compareTo(a.event.createdAt),
+  );
+  return result;
 }
 
 String _formatRelativeTime(DateTime dateTime) {
