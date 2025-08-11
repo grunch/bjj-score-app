@@ -19,7 +19,7 @@ class MatchScreen extends HookConsumerWidget {
       query<BjjMatch>(
         tags: {'#d': {matchId}},
         // Use local storage to leverage built-in deduplication
-        source: LocalSource(stream: true),
+        source: LocalSource(),
       ),
     );
 
@@ -46,7 +46,7 @@ class MatchScreen extends HookConsumerWidget {
             ),
           ),
         ),
-      StorageData(:final models) {
+      StorageData(:final models) => () {
         if (models.isEmpty) {
           return Scaffold(
             appBar: AppBar(title: const Text('Match Not Found')),
@@ -69,7 +69,7 @@ class MatchScreen extends HookConsumerWidget {
         }
         final match = _latestMatch(models.cast<BjjMatch>());
         return MatchControlWidget(match: match);
-      },
+      }(),
     };
   }
 }
