@@ -136,9 +136,11 @@ List<BjjMatch> _deduplicateMatches(List<BjjMatch> matches) {
   final Map<String, BjjMatch> latest = {};
   for (final match in matches) {
     final existing = latest[match.matchId];
+    final matchDate = match.event.createdAt;
+    final existingDate = existing?.event.createdAt;
     if (existing == null ||
-        (match.event.createdAt ?? defaultDate)
-            .isAfter(existing.event.createdAt ?? defaultDate)) {
+        (matchDate != null &&
+            (existingDate == null || matchDate.isAfter(existingDate)))) {
       latest[match.matchId] = match;
     }
   }
